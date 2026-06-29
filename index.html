@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Abriendo Obsidian...</title>
+
+</head>
+
+<body>
+
+    <div style="text-align: center; margin-top: 100px; font-family: sans-serif;">
+
+        <h2>Abriendo tu nota en Obsidian...</h2>
+
+        <p>Puedes cerrar esta pestaña si no se cierra automáticamente.</p>
+
+    </div>
+
+    <script>
+
+        // 1. Obtener la URL actual (ej. https://tuusuario.github.io/obsidian-redirect/open?vault=...)
+
+        const currentUrl = window.location.href;
+        
+        // 2. Reemplazar la URL de GitHub por el protocolo local obsidian://
+
+        const redirectUrl = currentUrl.replace("https://tuusuario.github.io/obsidian-redirect/", "obsidian://");
+        
+        // 3. Disparar la redirección local
+
+        window.location.href = redirectUrl;
+        
+        // 4. Cerrar automáticamente esta pestaña del navegador después de 1.5 segundos
+
+        setTimeout(() => {
+
+            window.close();
+
+        }, 1500);
+
+    </script>
+
+</body>
+
+</html>
