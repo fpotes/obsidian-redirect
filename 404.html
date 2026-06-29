@@ -23,19 +23,31 @@
 
     <script>
 
-        // 1. Obtener la URL que causó el "404" (ej: https://fpotes.github.io/obsidian-redirect/advanced-uri?vault=...)
+        // 1. Obtener la URL actual que causó el "404"
 
         const currentUrl = window.location.href;
         
         // 2. Reemplazar la raíz de GitHub por el protocolo local de Obsidian
 
-        const redirectUrl = currentUrl.replace("https://fpotes.github.io/obsidian-redirect/", "obsidian://");
+        let redirectUrl = currentUrl.replace("https://fpotes.github.io/obsidian-redirect/", "obsidian://");
         
-        // 3. Disparar la redirección local para abrir Obsidian
+        // 3. TRADUCCIÓN INTELIGENTE:
+
+        // Si el enlace viene como "adv-uri", lo convertimos a "advanced-uri"
+
+        // para garantizar compatibilidad total en macOS.
+
+        if (redirectUrl.includes("obsidian://adv-uri")) {
+
+            redirectUrl = redirectUrl.replace("obsidian://adv-uri", "obsidian://advanced-uri");
+
+        }
+        
+        // 4. Disparar la redirección local
 
         window.location.href = redirectUrl;
         
-        // 4. Intentar cerrar la pestaña del navegador automáticamente
+        // 5. Intentar cerrar la pestaña del navegador automáticamente
 
         setTimeout(() => {
 
@@ -48,4 +60,3 @@
 </body>
 
 </html>
-
