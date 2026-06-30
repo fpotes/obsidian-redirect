@@ -7,53 +7,206 @@
 
     <meta charset="UTF-8">
 
-    <title>Abriendo Obsidian...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Enlace de Obsidian | Conector Académico</title>
+    <style>
+
+        body {
+
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+            background-color: #f4f5f6;
+
+            color: #2e3440;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+
+            margin: 0;
+
+        }
+
+        .card {
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+
+            text-align: center;
+
+            max-width: 450px;
+
+            width: 90%;
+
+            border: 1px solid #e5e9f0;
+
+        }
+
+        .icon {
+
+            font-size: 48px;
+
+            margin-bottom: 20px;
+
+        }
+
+        h2 {
+
+            margin-top: 0;
+
+            color: #1a202c;
+
+            font-weight: 600;
+
+            font-size: 22px;
+
+        }
+
+        p {
+
+            color: #4a5568;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            margin-bottom: 30px;
+
+        }
+
+        .btn {
+
+            display: inline-block;
+
+            background-color: #4c566a; /* Color elegante gris oscuro académico */
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 14px 28px;
+
+            border-radius: 8px;
+
+            font-weight: 500;
+
+            font-size: 16px;
+
+            transition: background-color 0.2s ease, transform 0.1s ease;
+
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+            border: none;
+
+            cursor: pointer;
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+        }
+
+        .btn:hover {
+
+            background-color: #3b4252;
+
+            transform: translateY(-1px);
+
+        }
+
+        .btn:active {
+
+            transform: translateY(1px);
+
+        }
+
+        .footer {
+
+            margin-top: 25px;
+
+            font-size: 11px;
+
+            color: #a0aec0;
+
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-    <div style="text-align: center; margin-top: 100px; font-family: sans-serif;">
+    <div class="card">
 
-        <h2>Abriendo tu nota en Obsidian...</h2>
+        <div class="icon">🔮</div>
 
-        <p>Puedes cerrar esta pestaña si no se cierra automáticamente.</p>
+        <h2>Redireccionando a Obsidian</h2>
+
+        <p>Tu navegador está intentando abrir tu nota local en Obsidian. Si la aplicación no se abre sola, haz clic en el botón de abajo:</p>
+        
+        <!-- El botón mágico que desbloquea la seguridad del navegador -->
+
+        <a id="redirect-btn" href="#" class="btn">Abrir en Obsidian</a>
+        
+        <div class="footer">
+
+            Conector Seguro • Bóveda Fernando Potes
+
+        </div>
 
     </div>
 
     <script>
 
-        // 1. Obtener la URL actual que causó el "404"
+        // 1. Obtener la URL actual
 
         const currentUrl = window.location.href;
         
-        // 2. Reemplazar la raíz de GitHub por el protocolo local de Obsidian
+        // 2. Traducir a protocolo local
 
         let redirectUrl = currentUrl.replace("https://fpotes.github.io/obsidian-redirect/", "obsidian://");
         
-        // 3. TRADUCCIÓN INTELIGENTE:
-
-        // Si el enlace viene como "adv-uri", lo convertimos a "advanced-uri"
-
-        // para garantizar compatibilidad total en macOS.
+        // Corrección de atajo por si acaso
 
         if (redirectUrl.includes("obsidian://adv-uri")) {
 
             redirectUrl = redirectUrl.replace("obsidian://adv-uri", "obsidian://advanced-uri");
 
         }
-        
-        // 4. Disparar la redirección local
+
+        // 3. Asignar el enlace al botón interactivo
+
+        const btn = document.getElementById("redirect-btn");
+
+        btn.href = redirectUrl;
+
+        // 4. Intento de redirección automática inmediata en segundo plano
+
+        // (Funcionará si el navegador lo permite en sus ajustes)
 
         window.location.href = redirectUrl;
-        
-        // 5. Intentar cerrar la pestaña del navegador automáticamente
 
-        setTimeout(() => {
+        // 5. Cerrar la pestaña si el usuario hace clic y se ejecuta con éxito
 
-            window.close();
+        btn.addEventListener('click', () => {
 
-        }, 1500);
+            setTimeout(() => {
+
+                window.close();
+
+            }, 2000);
+
+        });
 
     </script>
 
